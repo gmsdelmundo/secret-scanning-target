@@ -1,3 +1,6 @@
 {
-    "key": "TEST-P-abcdefg"
+    "keys": [
+        "TEST-P-abcdefg",
+        "TEST-P-abcdefg"
+    ]
 }
