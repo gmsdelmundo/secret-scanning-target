@@ -1,0 +1,3 @@
+[submodule "secret-scanning-source"]
+	path = secret-scanning-source
+	url = git@github.com:gmsdelmundo/secret-scanning-source.git
