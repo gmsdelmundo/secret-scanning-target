@@ -1,0 +1,23 @@
+name: Scan
+on: [pull_request, push, workflow_dispatch]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+
+    - name: Test with Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@0.14.0
+      with:
+        scan-type: 'fs'
+        format: 'table'
+        exit-code: '1'
+        ignore-unfixed: true
+        severity: 'CRITICAL,HIGH'
+        hide-progress: true
+        trivy-config: secret-scanning-source/trivy-secret.yaml
