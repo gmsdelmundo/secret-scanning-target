@@ -8,8 +8,15 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
+
+    - name: Checkout secret scanning source repo
+      uses: actions/checkout@v3
       with:
-        submodules: 'recursive'
+        repository: gmsdelmundo/secret-scanning-source
+        path: secret-scanning-source
+
+    - name: Move trivy-secret.yaml
+      run: cp secret-scanning-source/trivy-secret.yaml ./trivy-secret.yaml
 
     - name: Test with Trivy vulnerability scanner
       uses: aquasecurity/trivy-action@0.14.0
@@ -20,4 +27,3 @@ jobs:
         ignore-unfixed: true
         severity: 'CRITICAL,HIGH'
         hide-progress: true
-        trivy-config: secret-scanning-source/trivy-secret.yaml
